@@ -76,6 +76,7 @@ const questions = [
     name: "questions",
   },
 
+  // github username and email get attached to questions section
   {
     type: "input",
     message: "What is your Github username?",
@@ -164,26 +165,26 @@ function init() {
                 }
             })
         
-            fs.appendFileSync('README.md', '## Questions: ' + '\n' + response.questions + '\n', function(err) {
+            fs.appendFileSync('README.md', '## Questions: ' + '\n' + response.questions + '\n' + response.gitHubUserName + '\n' + response.email + '\n', function(err) {
                 if (err) {
                     console.log(err)
                 } else {
                     console.log('success')
                 }
-            })
-            fs.appendFileSync('README.md', '### Developed by: ' + '\n' + response.gitHubUserName + '\n', function(err) {
-                if (err) {
-                    console.log(err)
-                } else {
-                    console.log('success')
-                }
-            })
-            fs.appendFileSync('README.md', '### Email: ' + '\n' + response.email + '\n', function(err) {
-                if (err) {
-                    console.log(err)
-                } else {
-                    console.log('success')
-                }
+            // })
+            // fs.appendFileSync('README.md', '### Developed by: ' + '\n' + response.gitHubUserName + '\n', function(err) {
+            //     if (err) {
+            //         console.log(err)
+            //     } else {
+            //         console.log('success')
+            //     }
+            // })
+            // fs.appendFileSync('README.md', '### Email: ' + '\n' + response.email + '\n', function(err) {
+            //     if (err) {
+            //         console.log(err)
+            //     } else {
+            //         console.log('success')
+            //     }
             })
         })   
 }
