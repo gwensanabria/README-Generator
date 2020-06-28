@@ -1,85 +1,172 @@
-const fs = require('fs')
-const inquirer = require('inquirer')
-
+const fs = require("fs");
+const inquirer = require("inquirer");
 
 // array of questions for user
 const questions = [
+// inquirer.prompt([
+    // only first question prompts and processes before you can answer
+  {
+    type: "input",
+    message: "What is the title of your project?",
+    name: "title",
+  },
 
-    {
-        type: 'input',
-        name: 'title',
-        message: 'What is the title of your project?' ,
-    },
+  {
+    type: "input",
+    message: "Write a description on the project.",
+    name: "description",
+  },
 
-    {
-        type: 'input',
-        name: 'description',
-        message: 'Write a description on the project.' ,
-    },
-    
-    {
-        type: 'input',
-        name: 'table of contents',
-        message: '' ,
-    },
+  {
+    type: "input",
+    message: "Table of Contents:",
+    name: "table",
+  },
 
-    {
-        type: 'input',
-        name: 'installation',
-        message: 'What are the installaion instructions?' ,
-    },
+  {
+    type: "input",
+    message: "What are the installation instructions?",
+    name: "install",
+  },
 
-    {
-        type: 'input',
-        name: 'usage',
-        message: 'How is your project used/how do you use it?' ,
-    },
+  {
+    type: "input",
+    message: "How is your project used/how do you use it?",
+    name: "use",
+  },
 
-    {
-        type: 'input',
-        name: 'license',
-        message: 'What license are you using?' ,
-    },
+  {
+    type: "input",
+    message: "What license are you using?",
+    name: "license",
+  },
 
-    {
-        type: 'input',
-        name: 'contributing',
-        message: 'Other contributors?' ,
-    },
+  {
+    type: "input",
+    message: "Other contributors?",
+    name: "contributing",
+  },
 
-    {
-        type: 'input',
-        name: 'tests',
-        message: 'Testing instructions?' ,
-    },
+  {
+    type: "input",
+    message: "Testing instructions?",
+    name: "tests",
+  },
 
-    {
-        type: 'input',
-        name: 'questions',
-        message: 'If any questions, who to contact?' ,
-    },
+  {
+    type: "input",
+    message: "If questions?",
+    name: "questions",
+  },
 
-    {
-        type: 'input',
-        name: 'gitHubUserName',
-        message: 'What is your Github username?' ,
-    },
+  {
+    type: "input",
+    message: "What is your Github username?",
+    name: "gitHubUserName",
+  },
 
-    {
-        type: 'input',
-        name: 'email',
-        message: 'What is your email?' ,
-    },
-
-];
+  {
+    type: "input",
+    message: "What is your email?",
+    name: "email",
+  },
+]
 
 // function to write README file
-function writeToFile(fileName, data) {
-}
+// function writeToFile() {
+
+// }
 
 // function to initialize program
 function init() {
-
+    inquirer
+        .prompt(questions).then((response) => {
+            fs.appendFileSync('README.md', '# ' + response.title + '\n', function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+                console.log(process.argv);
+            })
+            fs.appendFileSync('README.md', response.description + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+        
+            fs.appendFileSync('README.md', '## Table of Contents: ' + '\n' + response.table + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+        
+            fs.appendFileSync('README.md', '## Installaion Instructions: ' + '\n' + response.install + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+        
+            fs.appendFileSync('README.md', '## How to Use: ' + '\n' + response.use + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+        
+            fs.appendFileSync('README.md', '## License: ' + '\n' + response.license + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+        
+            fs.appendFileSync('README.md', '## Other Contributors: ' + '\n' + response.contributing + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+        
+            fs.appendFileSync('README.md', '## Explain How to Run Tests: ' + '\n' + response.tests + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+        
+            fs.appendFileSync('README.md', '## Questions: ' + '\n' + response.questions + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+            fs.appendFileSync('README.md', '### Developed by: ' + '\n' + response.gitHubUserName + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+            fs.appendFileSync('README.md', '### Email: ' + '\n' + response.email + '\n', function(err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('success')
+                }
+            })
+        })   
 }
 
 // function call to initialize program
