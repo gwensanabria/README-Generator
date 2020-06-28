@@ -1,5 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const gm = require("./utils/generateMarkdown.js");
+
 
 // array of questions for user
 const questions = [
@@ -36,9 +38,24 @@ const questions = [
   },
 
   {
-    type: "input",
+    // type: "input",
+    type: 'list',
     message: "What license are you using?",
     name: "license",
+    choices: [ 
+        // 'GNU General Public License (GPLv3)',
+        '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)',
+        // 'Apache License 2.0',
+        '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)',
+        // '2-Clause BSD License',
+        '[![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)',
+        // '3-Clause BSD License', 
+        '[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)',
+        // 'MIT', 
+        '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)',
+        // 'none', 
+        '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)'
+    ]
   },
 
   {
@@ -73,8 +90,11 @@ const questions = [
 ]
 
 // function to write README file
-// function writeToFile() {
 
+// function writeToFile(fileName, data) {
+//     fs.writeFile('license.md', data, 'utf8', function(err) {
+//         if (err) throw err;
+//     })
 // }
 
 // function to initialize program
@@ -87,7 +107,6 @@ function init() {
                 } else {
                     console.log('success')
                 }
-                console.log(process.argv);
             })
             fs.appendFileSync('README.md', response.description + '\n', function(err) {
                 if (err) {
@@ -168,6 +187,9 @@ function init() {
             })
         })   
 }
+
+
+
 
 // function call to initialize program
 init();
